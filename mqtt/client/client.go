@@ -2,19 +2,14 @@ package client
 
 import (
 	"fmt"
-	"gf-mqtt-handler/mqtt/event"
 	"gf-mqtt-handler/mqtt/global"
+	"gf-mqtt-handler/mqtt/register"
 	oMqtt "github.com/eclipse/paho.mqtt.golang"
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 	xMqtt "gogs.mirlowz.com/x/gf-x-mqtt/mqtt"
 )
-
-// CommandEvent 注册指令
-var CommandEvent = map[string]global.EventHandler{
-	"test": event.Test, // 测试
-}
 
 var Client *xMqtt.Client
 
@@ -34,7 +29,7 @@ func MessageHandler(client *xMqtt.Client, client2 oMqtt.Client, message oMqtt.Me
 	// 处理事件
 	Command := dataJson.Get("command").String()
 
-	if fn := CommandEvent[Command]; fn != nil {
+	if fn := register.CommandEvent[Command]; fn != nil {
 		fmt.Println(global.EventData{
 			SendTopic: message.Topic(),
 			Command:   Command,
