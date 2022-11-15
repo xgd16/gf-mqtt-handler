@@ -34,5 +34,5 @@ func (t *EventData) Send(command string, to string, data any) {
 	}{
 		command,
 		data,
-	}, fmt.Sprintf("%s/r-%s", s[0], s[1]))
+	}, fmt.Sprintf("%s/c/%s", s[0], s[2]))
 }
