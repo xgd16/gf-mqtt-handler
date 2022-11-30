@@ -11,7 +11,7 @@ import (
 	xMqtt "gogs.mirlowz.com/x/gf-x-mqtt/mqtt"
 )
 
-var Client *xMqtt.Client
+//var Client *xMqtt.Client
 
 func MessageHandler(client *xMqtt.Client, client2 oMqtt.Client, message oMqtt.Message) {
 	msg := message.Payload()

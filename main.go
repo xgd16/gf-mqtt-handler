@@ -6,5 +6,7 @@ import (
 )
 
 func main() {
-	mqtt.CreateClient().SetMessageCallbackFunc(client.MessageHandler).Run()
+	mqtt.CreateClient(func(option *mqtt.ClientOption, config *mqtt.Config) {
+		option.MessageCallbackFunc = client.MessageHandler
+	})
 }
